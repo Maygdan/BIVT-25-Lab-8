@@ -99,8 +99,9 @@ namespace Lab8.Blue
 
 
             public static Team GetChampion(Team[] teams)
-            {
-                return teams?.MaxBy(t => t.GetTeamStrength());
+            {   
+                if (teams == null || teams.Length == 0)return null;
+                return teams.MaxBy(t => t.GetTeamStrength());
             }
             public void Add(Sportsman sportsman)
             {

@@ -86,7 +86,7 @@ namespace Lab8.Blue
             {
                 _Bank = Bank;
                 _Name = Name;
-                _Participants = new Participant[0];
+                _Participants = [];
             }
 
             public void Add(Participant p)
@@ -136,12 +136,10 @@ namespace Lab8.Blue
                     int m = Participants.Length / 2;
                     if (m < 3) m = 3;
                     if (m > 10) m = 10;
-                    if (m > Participants.Length) m = Participants.Length;
 
                     double n = 20.0 / m;
                     double[] pr = new double[m];
 
-                    
                     pr[0] = (40.0 + n) / 100.0 * Bank;
                     pr[1] = (25.0 + n) / 100.0 * Bank;
                     pr[2] = (15.0 + n) / 100.0 * Bank;

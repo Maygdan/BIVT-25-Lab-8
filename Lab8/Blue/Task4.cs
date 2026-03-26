@@ -143,7 +143,6 @@ namespace Lab8.Blue
 
                 CollectAndAdd(g1.ManTeams, g2.ManTeams,k,res);
                 CollectAndAdd(g1.WomanTeams, g2.WomanTeams,k,res);
-
             
                 res.Sort(); 
                 return res;

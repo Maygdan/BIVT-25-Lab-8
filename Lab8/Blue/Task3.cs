@@ -13,24 +13,23 @@ namespace Lab8.Blue
             public string Surname => _Surname;
             virtual public bool IsExpelled => _IsExpelled;
 
-            virtual public int[] Penalties
+            public int[] Penalties
             {
                 get
                 {
-                    if (_PenaltyTimes == null)
-                        return null;
+                    if (_PenaltyTimes == null)return null;
                     
                     int[] copy = new int[_PenaltyTimes.Length];
                     Array.Copy(_PenaltyTimes, copy, _PenaltyTimes.Length);
                     return copy;
                 }
             }
-            virtual public int Total
+            public int Total
             {
                 get
                 {
                     if (_PenaltyTimes == null)return 0;
-                    return _PenaltyTimes.Sum();;
+                    return _PenaltyTimes.Sum();
                 }
             }
 
@@ -44,10 +43,8 @@ namespace Lab8.Blue
 
             virtual public void PlayMatch(int time)
             {
-               if (time == -1)
-                    return;
-                if (time == 10)
-                    _IsExpelled = true;
+               if (time == -1)return;
+                if (time == 10)_IsExpelled = true;
 
                 int[] newTimes = new int[_PenaltyTimes.Length + 1];
                 Array.Copy(_PenaltyTimes, newTimes, _PenaltyTimes.Length);
@@ -59,8 +56,7 @@ namespace Lab8.Blue
 
             public static void Sort(Participant[] array)
             {
-                if (array == null)
-                    return;
+                if (array == null)return;
 
                 Array.Sort(array, (a, b) => a.Total.CompareTo(b.Total));
             }
@@ -83,10 +79,8 @@ namespace Lab8.Blue
                     double c=_PenaltyTimes.Count(x=>x==5);
                     double games=Penalties.Length;
                     
-                    if( c / games>.1 || Total > 2 * games)
-                    {
-                        return true;    
-                    }
+                    if( c / games>.1 || Total > 2 * games)return true;    
+                    
                     return false;
                     
                 }
@@ -105,7 +99,6 @@ namespace Lab8.Blue
             private static int _totalTime=0;
 
             private int Players=>_players;
-            public override int Total => base.Total;
             private int TotalTime=>_totalTime;
             
             public HockeyPlayer(string Name,string Surname) : base(Name, Surname)
@@ -119,7 +112,7 @@ namespace Lab8.Blue
                 get
                 {
                     if(Players<1)return false;
-                    if(base.IsExpelled || Total>(TotalTime*.1/Players))return true;
+                    if(_PenaltyTimes.Any(x=>x==10)||Total>(TotalTime*.1/Players))return true;
                     return false;
                 }
             }
